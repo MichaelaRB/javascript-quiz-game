@@ -8,6 +8,7 @@ var answer4 = document.querySelector("#answer4");
 var answers = [answer1, answer2, answer3, answer4];
 var timerEl = document.querySelector("#timer");
 var resultEl = document.querySelector("#result");
+var scoreEl = document.querySelector("#finalScore");
 
 gameElements.setAttribute("style","display: none");
 resultsElements.setAttribute("style","display: none");
@@ -55,29 +56,7 @@ startElements.addEventListener("click", function(event) {
     gameTime();
 });
 
-for(var i = 0; i < 4; i++) {
-answers[i].addEventListener("click", function(event) {
-    var ans = event.currentTarget.textContent;
-    if(!event.currentTarget==="li") return;
-    if(ans!==questions[questionNum].correctAns){
-        resultEl.textContent = "Wrong!"
-        console.log(ans);
-    }
-    else{
-        resultEl.textContent = "Correct!"
-    }
-    questionNum++; 
-    if(questionNum === 5) {
-        gameElements.setAttribute("style","display: none");
-        resultsElements.setAttribute("style","display: inline");
-        return;
-    }   
-    gameElements.firstChild.textContent = questions[questionNum].question;
-    for(var i = 0; i < answers.length; i++){
-        answers[i].textContent = questions[questionNum].answers[i];
-    }   
-});
-}
+
 
 function gameTime() { 
     var timeLeft = 60;
@@ -91,8 +70,30 @@ function gameTime() {
             resultsElements.setAttribute("style","display: inline");
         }
     },1000);
-}
-
-function endGame() {
-
+    for(var i = 0; i < 4; i++) {
+        answers[i].addEventListener("click", function(event) {
+            var ans = event.currentTarget.textContent;
+            if(!event.currentTarget==="li") return;
+            if(ans!==questions[questionNum].correctAns){
+                resultEl.textContent = "Wrong!"
+                console.log(ans);
+                timeLeft = timeLeft - 10;
+            }
+            else{
+                resultEl.textContent = "Correct!"
+            }
+            questionNum++; 
+            if(questionNum === 5) {
+                gameElements.setAttribute("style","display: none");
+                resultsElements.setAttribute("style","display: inline");
+                clearInterval(timeInterval);
+                scoreEl.textContent = "Your score: " + timeLeft;
+                return;
+            }   
+            gameElements.firstChild.textContent = questions[questionNum].question;
+            for(var i = 0; i < answers.length; i++){
+                answers[i].textContent = questions[questionNum].answers[i];
+            }   
+        });
+        }
 }
