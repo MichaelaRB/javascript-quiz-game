@@ -1,17 +1,22 @@
+:root {
+    --light-purple: rgb(171, 122, 197);
+    --purple: rgb(98, 15, 143);
+    --dark-purple: rgb(43,9,61);
+}
+
 body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:rgb(43, 9, 61);
+    color:var(--dark-purple);
 }
 
 button {
-    background-color: rgb(98, 15, 143);
+    background-color: var(--purple);
     color: white;
     font-size: calc(10px + .1vw);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 p, li {
-    font-size: calc(10px + .1vw);
+    font-size: calc(10px + .25vw);
 }
 
 h1 {
@@ -19,15 +24,23 @@ h1 {
 }
 
 h2 {
-    font-size: calc(10px + .5vw);
+    font-size: calc(10px + .75vw);
+    padding-left: 5%;
 }
 
 h3 {
-    font-size: calc(10px + .25vw);
+    font-size: calc(10px + .5vw);
 }
 
 button:hover {
-    background-color: rgb(171, 122, 197);
+    background-color: var(light-purple);
+}
+
+li {
+    background-color:var(--purple);
+    color: white;
+    margin: 1vw;
+    padding-left: 1vw;
 }
 
 #timer {
@@ -37,7 +50,7 @@ button:hover {
 }
 
 #scoreList:hover {
-    color:rgb(171, 122, 197);
+    color:var(light-purple);
 }
 
 .game {
@@ -48,7 +61,7 @@ button:hover {
     height: 30%;
     text-align: center;
     background-color: rgb(229, 228, 228);
-    filter: drop-shadow(30px 10px);
+    filter: drop-shadow(1vw .5vw rgba(43,9,61,.5));
 
 }
 
@@ -57,5 +70,5 @@ button:hover {
 }
 
 ol {
-    list-style-type:lower-alpha;
+    list-style-type:none;
 }

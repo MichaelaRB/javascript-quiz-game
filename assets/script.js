@@ -8,3 +8,9 @@ var answer4 = document.querySelector("#answer4");
 
 gameElements.setAttribute("style","display: none");
 resultsElements.setAttribute("style","display: none");
+
+startElements.addEventListener("click", function(event) {
+    if(!event.currentTarget==="button") return;
+    startElements.setAttribute("style","display: none");
+    gameElements.setAttribute("style","display: in-line");
+});
