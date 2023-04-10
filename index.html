@@ -10,11 +10,33 @@
 
 
   <body>
-    <container id="game">
-        <h1>JavaScript Quiz!</h1>
+    <container class="game">
+        <div class="startScreen" data-state="visible">
+          <h1>JavaScript Quiz!</h1>
+          <p>Try to answer the following code related questions within the time limit. Keep in mind that choosing a wrong answer will penalize your time/score by 10 seconds!</p>
+          <button>Start the game!</button>
+        </div>
+        <div class="gameScreen" data-state="hidden">
+          <h2>Question 1</h2>
+          <ol>
+            <li id="answer1">Answer 1</li>
+            <li id="answer2">Answer 2</li>
+            <li id="answer3">Answer 3</li>
+            <li id="answer4">Answer 4</li>
+          </ol>
+        </div>
+        <div class="resultScreen" data-state="hidden">
+          <h2>All done!</h2>
+          <h3>Your score:</h3>
+          <form id="initials-form" method="POST">
+            <label for="initials-text">Your initials: </label>
+            <input type="text" placeholder="" name="initials-text" id="initials-text" />
+            <button>Submit</button>
+          </form>
+        </div>
     </container>
 
 
-    <script src = "./assets/script/ks"></script>
+    <script src = "./assets/script.js"></script>
   </body>
 </html>

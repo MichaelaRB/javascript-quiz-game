@@ -1,0 +1,29 @@
+body {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+    background-color: rgb(98, 15, 143);
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.game {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 30%;
+    text-align: center;
+    background-color: rgb(229, 228, 228);
+    filter: drop-shadow(30px 10px);
+
+}
+
+.gameScreen {
+    text-align: left;
+}
+
+ol {
+    list-style-type:lower-alpha;
+}
