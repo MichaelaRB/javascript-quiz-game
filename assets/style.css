@@ -1,11 +1,26 @@
 body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:rgb(43, 9, 61);
 }
 
 button {
     background-color: rgb(98, 15, 143);
     color: white;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+    background-color: rgb(171, 122, 197);
+}
+
+#timer {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+}
+
+#scoreList:hover {
+    color:rgb(171, 122, 197);
 }
 
 .game {
