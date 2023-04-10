@@ -6,7 +6,24 @@ body {
 button {
     background-color: rgb(98, 15, 143);
     color: white;
+    font-size: calc(10px + .1vw);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+p, li {
+    font-size: calc(10px + .1vw);
+}
+
+h1 {
+    font-size: calc(10px + 1vw);
+}
+
+h2 {
+    font-size: calc(10px + .5vw);
+}
+
+h3 {
+    font-size: calc(10px + .25vw);
 }
 
 button:hover {
