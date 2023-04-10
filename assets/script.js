@@ -9,6 +9,9 @@ var answers = [answer1, answer2, answer3, answer4];
 var timerEl = document.querySelector("#timer");
 var resultEl = document.querySelector("#result");
 var scoreEl = document.querySelector("#finalScore");
+var initialEl = document.querySelector("#initials-form");
+var submit = document.querySelector("#scoreSubmit");
+var scoresList = [];
 
 gameElements.setAttribute("style","display: none");
 resultsElements.setAttribute("style","display: none");
@@ -95,5 +98,34 @@ function gameTime() {
                 answers[i].textContent = questions[questionNum].answers[i];
             }   
         });
-        }
+    }
+    submit.addEventListener("click", function(event) {
+        var highScore = initialEl.value.trim() + timeLeft;
+        console.log(highScore);
+        startElements.setAttribute("style","display: in-line");
+        resultsElements.setAttribute("style","display: none");
+    });
 }
+
+
+/*function renderScores() {
+  scoresList.innerHTML = "";
+
+  // Render a new li for each todo
+  for (var i = 0; i < scoresList.length; i++) {
+    var score= scores[i];
+
+    var li = document.createElement("li");
+    li.textContent = todo;
+    li.setAttribute("data-index", i);
+
+    li.appendChild(button);
+    todoList.appendChild(li);
+  }
+}
+
+function storeScoress() {
+  // Stringify and set key in localStorage to todos array
+  localStorage.setItem("scores", JSON.stringify(todos));
+}
+*/
