@@ -16,7 +16,7 @@ button {
 }
 
 p, li {
-    font-size: calc(10px + .25vw);
+    font-size: calc(10px + .1vw);
 }
 
 h1 {
@@ -24,12 +24,12 @@ h1 {
 }
 
 h2 {
-    font-size: calc(10px + .75vw);
+    font-size: calc(10px + .4vw);
     padding-left: 5%;
 }
 
 h3 {
-    font-size: calc(10px + .5vw);
+    font-size: calc(10px + .35vw);
 }
 
 button:hover {
@@ -41,6 +41,10 @@ li {
     color: white;
     margin: 1vw;
     padding-left: 1vw;
+}
+
+li:hover {
+    background-color: var(--light-purple);
 }
 
 #timer {
