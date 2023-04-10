@@ -7,6 +7,7 @@
 body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:var(--dark-purple);
+    padding: 5vw;
 }
 
 button {
@@ -24,8 +25,7 @@ h1 {
 }
 
 h2 {
-    font-size: calc(10px + .4vw);
-    padding-left: 5%;
+    font-size: calc(10px + .5vw);
 }
 
 h3 {
@@ -41,6 +41,7 @@ li {
     color: white;
     margin: 1vw;
     padding-left: 1vw;
+    width: 50vw;
 }
 
 li:hover {
@@ -49,21 +50,33 @@ li:hover {
 
 #timer {
     position: absolute;
-    right: 0%;
+    right: 5%;
+    top: 0%;
+}
+
+#scoreList {
+    position: absolute;
+    left: 5%;
     top: 0%;
 }
 
 #scoreList:hover {
-    color:var(light-purple);
+    color:var(--light-purple);
+}
+
+#result {
+    color: gray;
 }
 
 .game {
     position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50%;
-    height: 30%;
+    top: 10%;
+    left: 12%;
+    width: 75vw;
+    height: calc(250px - 1vw);
     text-align: center;
+    padding-left: 2vw;
+    padding-top: 2vw;
     background-color: rgb(229, 228, 228);
     filter: drop-shadow(1vw .5vw rgba(43,9,61,.5));
 
