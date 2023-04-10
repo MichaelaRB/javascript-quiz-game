@@ -42,6 +42,7 @@ var question5 = {
 };
 
 var questions = [question1, question2, question3, question4, question5];
+var questionNum = 0;
 
 startElements.addEventListener("click", function(event) {
     if(!event.currentTarget==="button") return;
@@ -51,13 +52,35 @@ startElements.addEventListener("click", function(event) {
     for(var i = 0; i < answers.length; i++){
         answers[i].textContent = question1.answers[i];
     }
-    
     gameTime();
 });
 
+for(var i = 0; i < 4; i++) {
+answers[i].addEventListener("click", function(event) {
+    var ans = event.currentTarget.textContent;
+    if(!event.currentTarget==="li") return;
+    if(ans!==questions[questionNum].correctAns){
+        resultEl.textContent = "Wrong!"
+        console.log(ans);
+    }
+    else{
+        resultEl.textContent = "Correct!"
+    }
+    questionNum++; 
+    if(questionNum === 5) {
+        gameElements.setAttribute("style","display: none");
+        resultsElements.setAttribute("style","display: inline");
+        return;
+    }   
+    gameElements.firstChild.textContent = questions[questionNum].question;
+    for(var i = 0; i < answers.length; i++){
+        answers[i].textContent = questions[questionNum].answers[i];
+    }   
+});
+}
+
 function gameTime() { 
     var timeLeft = 60;
-    var questionNum = 1;
 
     var timeInterval = setInterval(function () {
         timeLeft--;
@@ -68,26 +91,8 @@ function gameTime() {
             resultsElements.setAttribute("style","display: inline");
         }
     },1000);
-    gameElements.addEventListener("click", function(event) {
-        if(questionNum === 5) {
-            gameElements.setAttribute("style","display: none");
-            resultsElements.setAttribute("style","display: inline");
-            return;
-        }
-        if(!event.currentTarget==="li") return;
-        var ans = event.currentTarget.textContent;
-        if(a!==questions[questionNum].correctAns){
-            resultEl.textContent = "Wrong!"
-            timeLeft = timeLeft - 10;
-            timerEl.textContent = "Time left: " + timeLeft;
-        }
-        else{
-            resultEl.textContent = "Correct!"
-        }
-        gameElements.firstChild.textContent = questions[questionNum].question;
-        for(var i = 0; i < answers.length; i++){
-            answers[i].textContent = questions[questionNum].answers[i];
-        }
-        questionNum++;       
-    });
+}
+
+function endGame() {
+
 }
