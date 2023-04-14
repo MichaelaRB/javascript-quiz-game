@@ -12,13 +12,14 @@ var scoreEl = document.querySelector("#finalScore");
 var questNo = document.querySelector("#questNo");
 var initialEl = document.querySelector("#initials-text");
 var submit = document.querySelector("#scoreSubmit");
-var highScores = document.querySelector("#scoreList");
-var scorePage = document.querySelector(".scoreScreen");
+var scoresLink = document.querySelector("#scoreList");
+var highScores = document.querySelector("#highScores")
+var scorePage = document.querySelector(".scoresScreen");
 var scoresList = [];
 
 gameElements.setAttribute("style","display: none");
 resultsElements.setAttribute("style","display: none");
-
+scorePage.setAttribute("style","display: none");
 
 var question1 = {
     question: "Which of the following is the correct way to declare and initialize a variable in JavaScript?",
@@ -117,12 +118,12 @@ function gameTime() {
 
 
 
-highScores.addEventListener("click", function(event) {
+scoresLink.addEventListener("click", function(event) {
     gameElements.setAttribute("style","display: none");
     startElements.setAttribute("style","display: none");
     resultsElements.setAttribute("style","display: none");
     timerEl.setAttribute("style","display: none");
-    highScores.setAttribute("style","display: inline");
+    scorePage.setAttribute("style","display: inline");
     renderScores();
 })
 

@@ -55,10 +55,22 @@ button:hover {
     height: 40vw;
 }
 .scoresScreen li {
-    font-size: 25px;
+    font-size: 12px;
     background-color:rgb(171, 122, 197);
     width: 20vw;;
     margin-bottom: 1vw;
+}
+
+#clearBtn{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+}
+
+#returnBtn {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
 }
 
 #timer {
