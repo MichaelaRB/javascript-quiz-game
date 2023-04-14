@@ -9,9 +9,11 @@ var answers = [answer1, answer2, answer3, answer4];
 var timerEl = document.querySelector("#timer");
 var resultEl = document.querySelector("#result");
 var scoreEl = document.querySelector("#finalScore");
-var initialEl = document.querySelector("#initials-form");
+var questNo = document.querySelector("#questNo");
+var initialEl = document.querySelector("#initials-text");
 var submit = document.querySelector("#scoreSubmit");
 var scoresList = [];
+var score;
 
 gameElements.setAttribute("style","display: none");
 resultsElements.setAttribute("style","display: none");
@@ -75,6 +77,7 @@ function gameTime() {
     },1000);
     for(var i = 0; i < 4; i++) {
         answers[i].addEventListener("click", function(event) {
+            event.preventDefault();
             var ans = event.currentTarget.textContent;
             if(!event.currentTarget==="li") return;
             if(ans!==questions[questionNum].correctAns){
@@ -86,11 +89,13 @@ function gameTime() {
                 resultEl.textContent = "Correct!"
             }
             questionNum++; 
-            if(questionNum === 5) {
+            if(questionNum === 5 || timeLeft === 0) {
                 gameElements.setAttribute("style","display: none");
                 resultsElements.setAttribute("style","display: inline");
                 clearInterval(timeInterval);
+                timerEl.textContent = "Time left: " + timeLeft;
                 scoreEl.textContent = "Your score: " + timeLeft;
+                score = timeLeft;
                 return;
             }   
             gameElements.firstChild.textContent = questions[questionNum].question;
@@ -98,34 +103,15 @@ function gameTime() {
                 answers[i].textContent = questions[questionNum].answers[i];
             }   
         });
+
     }
+
     submit.addEventListener("click", function(event) {
-        var highScore = initialEl.value.trim() + timeLeft;
-        console.log(highScore);
-        startElements.setAttribute("style","display: in-line");
-        resultsElements.setAttribute("style","display: none");
+        event.preventDefault();
+        scoresList = JSON.parse(localStorage.getItem("scores"));
+        var highScore = initialEl.value.trim() + score;
+        scoresList.push(highScore);
+        localStorage.setItem("scores", JSON.stringify(scoresList));
+        window.location.reload();
     });
 }
-
-
-/*function renderScores() {
-  scoresList.innerHTML = "";
-
-  // Render a new li for each todo
-  for (var i = 0; i < scoresList.length; i++) {
-    var score= scores[i];
-
-    var li = document.createElement("li");
-    li.textContent = todo;
-    li.setAttribute("data-index", i);
-
-    li.appendChild(button);
-    todoList.appendChild(li);
-  }
-}
-
-function storeScoress() {
-  // Stringify and set key in localStorage to todos array
-  localStorage.setItem("scores", JSON.stringify(todos));
-}
-*/
