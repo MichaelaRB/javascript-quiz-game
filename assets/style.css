@@ -48,31 +48,6 @@ button:hover {
     background-color: var(--light-purple);
 }
 
-.scoresScreen {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 40vw;
-}
-.scoresScreen li {
-    font-size: 12px;
-    background-color:rgb(171, 122, 197);
-    width: 20vw;;
-    margin-bottom: 1vw;
-}
-
-#clearBtn{
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-}
-
-#returnBtn {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-}
-
 #timer {
     position: absolute;
     right: 5%;
@@ -98,14 +73,33 @@ button:hover {
     top: 10%;
     left: 12%;
     width: 75vw;
-    height: 40%;
     text-align: center;
     padding-left: 2vw;
     padding-top: 2vw;
-    background-color: rgb(229, 228, 228);
-    filter: drop-shadow(1vw .5vw rgba(43,9,61,.5));
-
 }
+.scoresScreen ol {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 30vw;
+    margin-left: 7vw;
+    list-style-type: decimal;
+    list-style-position:inside;
+    align-content:flex-start;
+}
+
+.scoresScreen li {
+    font-size: calc(10px + .25vw);
+    background-color:rgb(171, 122, 197);
+    width: 35%;
+    height: 16.5%;
+    margin-bottom: 1vw;
+    margin-left: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .gameScreen {
     text-align: left;

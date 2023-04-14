@@ -16,6 +16,9 @@ var scoresLink = document.querySelector("#scoreList");
 var highScores = document.querySelector("#highScores")
 var scorePage = document.querySelector(".scoresScreen");
 var scoresList = [];
+var initialsList = [];
+var clearBtn = document.querySelector("#clearBtn");
+var returnBtn = document.querySelector("#returnBtn");
 
 gameElements.setAttribute("style","display: none");
 resultsElements.setAttribute("style","display: none");
@@ -105,32 +108,66 @@ function gameTime() {
         });
     }
     submit.addEventListener("click", function(event) {
-        if(localStorage.getItem("scores")!==null)
+        event.preventDefault();
+        if(localStorage.getItem("scores")!==null && localStorage.getItem("initials")!==null)
         {
             scoresList = JSON.parse(localStorage.getItem("scores"));
+            initialsList = JSON.parse(localStorage.getItem("initials"));
         }
-        var highScore = initialEl.value.trim() + " " + timeLeft;
-        scoresList.push(highScore);
+        var scoreInitial = initialEl.value.trim();
+        initialsList.push(scoreInitial);
+        scoresList.push(timeLeft);
+        localStorage.setItem("initials", JSON.stringify(initialsList));
         localStorage.setItem("scores", JSON.stringify(scoresList));
         window.location.reload();
     });
 }
 
-
-
 scoresLink.addEventListener("click", function(event) {
     gameElements.setAttribute("style","display: none");
     startElements.setAttribute("style","display: none");
     resultsElements.setAttribute("style","display: none");
+    scoresLink.setAttribute("style","display: none")
     timerEl.setAttribute("style","display: none");
     scorePage.setAttribute("style","display: inline");
     renderScores();
-})
+});
+
+clearBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    clearScores();
+});
+
+returnBtn.addEventListener("click", function(event) {
+    window.location.reload();
+});
 
 function renderScores() {
+    highScores.innerHTML = "";
+
     scoresList = JSON.parse(localStorage.getItem("scores"));
+    initialsList = JSON.parse(localStorage.getItem("initials"));
+    if(scoresList === null || initialsList === null) return;
+    //sort scores so the highest scores display first
+    for(var i = 0; i < scoresList.length; i++) {
+        for(var j = 0; j < scoresList.length - i - 1; j++) {
+            if(scoresList[j]<scoresList[j+1])
+            {
+                var tempScore = scoresList[j+1];
+                var tempInitial = initialsList[j+1];
+                scoresList[j+1] = scoresList[j];
+                scoresList[j] = tempScore;
+                initialsList[j+1] = initialsList[j];
+                initialsList[j] = tempInitial;
+            }
+        }
+    }
+    if(scoresList.length >= 10) {
+        scoresList.splice(10);
+        initialsList.splice(10);
+    }
     for (var i = 0; i < scoresList.length; i++) {
-      var newScore = scoresList[i];
+      var newScore = scoresList[i] + " " + initialsList[i];
   
       var li = document.createElement("li");
       li.textContent = newScore;
@@ -138,3 +175,9 @@ function renderScores() {
       highScores.appendChild(li);
     }
   }
+
+function clearScores() {
+    localStorage.removeItem("scores");
+    localStorage.removeItem("initials");
+    renderScores();
+}
