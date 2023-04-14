@@ -87,12 +87,19 @@ function gameTime() {
             if(!event.currentTarget==="li") return;
             if(ans!==questions[questionNum].correctAns){
                 resultEl.textContent = "Wrong!"
+                setTimeout(function() {
+                    resultEl.textContent = "";
+                },1000);
                 timeLeft = timeLeft - 10;
             }
             else{
                     resultEl.textContent = "Correct!"
+                    setTimeout(function() {
+                        resultEl.textContent = "";
+                    },1000);
             }
             questionNum++; 
+            questNo.textContent = "Question " + (questionNum + 1);
             if(questionNum === 5 || timeLeft === 0) {
                 gameElements.setAttribute("style","display: none");
                 resultsElements.setAttribute("style","display: inline");
@@ -115,6 +122,10 @@ function gameTime() {
             initialsList = JSON.parse(localStorage.getItem("initials"));
         }
         var scoreInitial = initialEl.value.trim();
+        if(scoreInitial === "") {
+            alert("Please input an identifier for the scores page.")
+            return;
+        }
         initialsList.push(scoreInitial);
         scoresList.push(timeLeft);
         localStorage.setItem("initials", JSON.stringify(initialsList));
@@ -163,8 +174,8 @@ function renderScores() {
         }
     }
     if(scoresList.length >= 10) {
-        scoresList.splice(10);
-        initialsList.splice(10);
+        scoresList.splice(9);
+        initialsList.splice(9);
     }
     for (var i = 0; i < scoresList.length; i++) {
       var newScore = scoresList[i] + " " + initialsList[i];
