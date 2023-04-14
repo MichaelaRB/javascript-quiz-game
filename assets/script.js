@@ -12,11 +12,13 @@ var scoreEl = document.querySelector("#finalScore");
 var questNo = document.querySelector("#questNo");
 var initialEl = document.querySelector("#initials-text");
 var submit = document.querySelector("#scoreSubmit");
+var highScores = document.querySelector("#scoreList");
+var scorePage = document.querySelector(".scoreScreen");
 var scoresList = [];
-var score;
 
 gameElements.setAttribute("style","display: none");
 resultsElements.setAttribute("style","display: none");
+
 
 var question1 = {
     question: "Which of the following is the correct way to declare and initialize a variable in JavaScript?",
@@ -65,7 +67,6 @@ startElements.addEventListener("click", function(event) {
 
 function gameTime() { 
     var timeLeft = 60;
-
     var timeInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = "Time left: " + timeLeft;
@@ -82,11 +83,10 @@ function gameTime() {
             if(!event.currentTarget==="li") return;
             if(ans!==questions[questionNum].correctAns){
                 resultEl.textContent = "Wrong!"
-                console.log(ans);
                 timeLeft = timeLeft - 10;
             }
             else{
-                resultEl.textContent = "Correct!"
+                    resultEl.textContent = "Correct!"
             }
             questionNum++; 
             if(questionNum === 5 || timeLeft === 0) {
@@ -95,7 +95,6 @@ function gameTime() {
                 clearInterval(timeInterval);
                 timerEl.textContent = "Time left: " + timeLeft;
                 scoreEl.textContent = "Your score: " + timeLeft;
-                score = timeLeft;
                 return;
             }   
             gameElements.firstChild.textContent = questions[questionNum].question;
@@ -103,15 +102,38 @@ function gameTime() {
                 answers[i].textContent = questions[questionNum].answers[i];
             }   
         });
-
     }
-
     submit.addEventListener("click", function(event) {
-        event.preventDefault();
-        scoresList = JSON.parse(localStorage.getItem("scores"));
-        var highScore = initialEl.value.trim() + score;
+        if(localStorage.getItem("scores")!==null)
+        {
+            scoresList = JSON.parse(localStorage.getItem("scores"));
+        }
+        var highScore = initialEl.value.trim() + " " + timeLeft;
         scoresList.push(highScore);
         localStorage.setItem("scores", JSON.stringify(scoresList));
         window.location.reload();
     });
 }
+
+
+
+highScores.addEventListener("click", function(event) {
+    gameElements.setAttribute("style","display: none");
+    startElements.setAttribute("style","display: none");
+    resultsElements.setAttribute("style","display: none");
+    timerEl.setAttribute("style","display: none");
+    highScores.setAttribute("style","display: inline");
+    renderScores();
+})
+
+function renderScores() {
+    scoresList = JSON.parse(localStorage.getItem("scores"));
+    for (var i = 0; i < scoresList.length; i++) {
+      var newScore = scoresList[i];
+  
+      var li = document.createElement("li");
+      li.textContent = newScore;
+
+      highScores.appendChild(li);
+    }
+  }

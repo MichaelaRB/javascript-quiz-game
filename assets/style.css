@@ -36,7 +36,7 @@ button:hover {
     background-color: var(light-purple);
 }
 
-li {
+.gameScreen li {
     background-color:var(--purple);
     color: white;
     margin: 1vw;
@@ -44,8 +44,21 @@ li {
     width: 50vw;
 }
 
-li:hover {
+.gameScreen li:hover {
     background-color: var(--light-purple);
+}
+
+.scoresScreen {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 40vw;
+}
+.scoresScreen li {
+    font-size: 25px;
+    background-color:rgb(171, 122, 197);
+    width: 20vw;;
+    margin-bottom: 1vw;
 }
 
 #timer {
@@ -73,7 +86,7 @@ li:hover {
     top: 10%;
     left: 12%;
     width: 75vw;
-    height: calc(250px - 1vw);
+    height: 40%;
     text-align: center;
     padding-left: 2vw;
     padding-top: 2vw;
